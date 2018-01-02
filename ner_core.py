@@ -11,15 +11,15 @@ class NerCore:
     def __init__(self, sentence):
         self.sentence = sentence
 
-    def __preprocessing(self):
+    def __preprocessing(self, lang):
         sentences = sent_tokenize(self.sentence)
         sentences = [word_tokenize(sent) for sent in sentences]
-        sentences = [pos_tag(sent) for sent in sentences]
+        sentences = [pos_tag(sent, lang=lang) for sent in sentences]
         return sentences
 
-    def extract_names(self):
+    def extract_names(self, lang):
         names = []
-        sentences = self.__preprocessing()
+        sentences = self.__preprocessing(lang)
         for tagged_sentence in sentences:
             for chunk in ne_chunk(tagged_sentence):
                 if isinstance(chunk, tree.Tree):
@@ -27,9 +27,9 @@ class NerCore:
                         names.append(' '.join([c[0] for c in chunk]))
         return names
 
-    def extract_location(self):
+    def extract_location(self, lang):
         locations = []
-        sentences = self.__preprocessing()
+        sentences = self.__preprocessing(lang)
         for tagged_sentence in sentences:
             for chunk in ne_chunk(tagged_sentence):
                 if isinstance(chunk, tree.Tree):
@@ -60,4 +60,3 @@ class NerCore:
             if isinstance(word, nltk.tree.Tree) and word.label() == 'DATE':
                 dateTimes.append(' '.join([w[0] for w in word]))
         return dateTimes
-

@@ -16,27 +16,27 @@ testing shoppable videos with some brands, apparently with encouraging results i
 if __name__ == '__main__':
     ner = ner_core.NerCore(sentence)
 
-    names = ner.extract_names()
-    locations = ner.extract_location()
+    names = ner.extract_names("eng")
+    locations = ner.extract_location("eng")
     dates = ner.extract_date_time()
 
-    print "=============================="
-    print "Result data extract (English)"
-    print "========================"
-    print "Name"
-    print "===================="
+    print("==============================")
+    print("Result data extract (English)")
+    print("========================")
+    print("Name")
+    print("====================")
     utils.get_result(names)
 
     print
-    print "========================"
-    print "Location"
-    print "===================="
+    print("========================")
+    print("Location")
+    print("====================")
     utils.get_result(locations)
 
     print
-    print "========================"
-    print "Date time"
-    print "===================="
+    print("========================")
+    print("Date time")
+    print("====================")
     utils.get_result(dates)
 
 

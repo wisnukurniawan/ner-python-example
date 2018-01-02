@@ -11,27 +11,27 @@ bursa saham atau tidak."""
 if __name__ == '__main__':
     ner = ner_core.NerCore(sentence)
 
-    names = ner.extract_names()
-    locations = ner.extract_location()
+    names = ner.extract_names("ind")
+    locations = ner.extract_location("ind")
     dates = ner.extract_date_time()
 
-    print "=============================="
-    print "Hasil extract data (Indonesia)"
-    print "========================"
-    print "Nama"
-    print "===================="
+    print("==============================")
+    print("Hasil extract data (Indonesia)")
+    print("========================")
+    print("Nama")
+    print("====================")
     utils.get_result(names)
 
     print
-    print "========================"
-    print "Lokasi"
-    print "===================="
+    print("========================")
+    print("Lokasi")
+    print("====================")
     utils.get_result(locations)
 
     print
-    print "========================"
-    print "Tanggal"
-    print "===================="
+    print("========================")
+    print("Tanggal")
+    print("====================")
     utils.get_result(dates)
 
 
